@@ -19,7 +19,8 @@ deployment:
      - docker push manomatt/docker-ci
 notify:
   webhooks:
-    - url: $BUILD_TRIGGER_TO_DOCKERHUB
+  # Build trigger for DockerHub 
+    - url: https://registry.hub.docker.com/u/manomatt/docker-ci/trigger/0290965b-43da-4484-b183-4a7b7c47be91/
 
 test:
   override:    
