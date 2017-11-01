@@ -8,18 +8,18 @@ machine:
 dependencies:
   override:
     - docker info
-    - docker build -t manomatt/docker-ci .
+    - docker build --rm=false -t manomatt/docker-ci .
 
 deployment:
   dockerhub:
     branch: master
     commands:
-      - $DOCKER_HUB_TRIGGER
-#     - docker login -u $DOCKER_USER -p $DOCKER_PASS
-#     - docker push manomatt/docker-ci
-#notify:
-#  webhooks:
-#    - url: https://registry.hub.docker.com/u/manomatt/docker-ci/trigger/0290965b-43da-4484-b183-4a7b7c47be91/
+#      - $DOCKER_HUB_TRIGGER
+     - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+     - docker push manomatt/docker-ci
+notify:
+  webhooks:
+    - url: https://registry.hub.docker.com/u/manomatt/docker-ci/trigger/0290965b-43da-4484-b183-4a7b7c47be91/
 
 test:
   override:    
